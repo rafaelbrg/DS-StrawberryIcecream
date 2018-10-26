@@ -1,1 +1,8 @@
 
+  {
+    "name": "Nome da Extensão",
+    "version": "1.0",
+    "description": "Descrição da Extensão",
+	  "permissions":[],
+	  "manifest_version": 2,
+  }
