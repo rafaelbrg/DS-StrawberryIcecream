@@ -3,6 +3,22 @@
     "name": "Nome da Extensão",
     "version": "1.0",
     "description": "Descrição da Extensão",
-	  "permissions":[],
+	  "permissions":["declarativeContent","storage","activeTab","webNavigation"],
 	  "manifest_version": 2,
+	  
+	"browser_action": {
+		"default_icon": "32.png",
+		"default_popup": "popup.html", 
+		"default_title": "Clique aqui para ver os dados gerados!"
+    },
+	  
+	"content_scripts":[{
+		"matches": ["<all_urls>"],
+		
+		"js": ["isPlaying.js"]	
+	}]  
+	  
+  
   }
+  
+  
