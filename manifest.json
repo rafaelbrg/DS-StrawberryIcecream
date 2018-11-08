@@ -1,6 +1,6 @@
 
   {
-    "name": "Nome da Extensão",
+    "name": "Nome",
     "version": "1.0",
     "description": "Descrição da Extensão",
 	  "permissions":["declarativeContent","storage","activeTab","webNavigation"],
@@ -12,10 +12,14 @@
 		"default_title": "Clique aqui para ver os dados gerados!"
     },
 	  
+	"background":{
+		"scripts": ["background_script.js"]		
+	},
+	  
 	"content_scripts":[{
 		"matches": ["<all_urls>"],
 		
-		"js": ["isPlaying.js"]	
+		"js": ["isPlaying.js","message_passing.js"]	
 	}]  
 	  
   
