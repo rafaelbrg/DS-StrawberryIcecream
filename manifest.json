@@ -1,8 +1,8 @@
 
   {
-    "name": "Nome",
+    "name": "Youtube Icecream Time",
     "version": "0.9",
-    "description": "Descrição da Extensão",
+    "description": "Contabiliza o tempo que você gasta no Youtube.",
 	  "permissions":["declarativeContent","storage","activeTab","tabs","webNavigation"],
 	  "manifest_version": 2,
 	  
