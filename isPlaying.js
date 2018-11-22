@@ -6,19 +6,25 @@ Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
 
  var video_status;
  var category;
- var videoid;
+ var videourl = "https://www.youtube.com/watch?v=eaAAvCAeewQ";
+ var videoid = videourl.substr(32);
+ console.log("deveria ser SRdN6BIaGVQ e é", videoid);
+ var cat;
+ console.log("fora func videoID = ",videoid);
 
  // Faz requisição para a API do YouTube e pega a categoria do vídeo.
-async function fetchAPI(videoId) {
+async function fetchAPI(videoid, data) {
 	try {
-		const apiUrl = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=AIzaSyABwRlveLXMYpZQ2CsZbGEqzrCZ9jnCA4s&fields=items(id,snippet(categoryId))&part=snippet,statistics`)
-		apiUrl.json().then(data => data.items[0].snippet.categoryId);
-		console.log(category);
+		console.log("videoID = ",videoid);
+		const apiUrl = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoid}&key=AIzaSyABwRlveLXMYpZQ2CsZbGEqzrCZ9jnCA4s&fields=items(id,snippet(categoryId))&part=snippet,statistics`)
+		apiUrl.json().then(data => {cat = parseInt(data.items[0].snippet.categoryId);});
+		console.log("fim", cat);
 	} catch (error) {
 		console.log(error);
 	}
 }
-
+category = fetchAPI(videoid)
+console.log("category =", category);
 
 window.addEventListener('mouseup',fetchAPI());
 
