@@ -6,26 +6,28 @@ Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
 
  var video_status;
  var category;
- var videourl = "https://www.youtube.com/watch?v=eaAAvCAeewQ";
- var videoid = videourl.substr(32);
- console.log("deveria ser SRdN6BIaGVQ e é", videoid);
+ var videourl = "https://www.youtube.com/watch?v=eaAAvCAeewQ";//Recebe URL do Site do YoutTube (URL FIXA PARA TESTE)
+console.log(videourl)
+ var videoid = videourl.substr(32);//Remove apenas o Video ID da URL
  var cat;
- console.log("fora func videoID = ",videoid);
 
  // Faz requisição para a API do YouTube e pega a categoria do vídeo.
 async function fetchAPI(videoid, data) {
 	try {
-		console.log("videoID = ",videoid);
+		console.log("Parte final da URL = ",videoid);
 		const apiUrl = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoid}&key=AIzaSyABwRlveLXMYpZQ2CsZbGEqzrCZ9jnCA4s&fields=items(id,snippet(categoryId))&part=snippet,statistics`)
 		apiUrl.json().then(data => {cat = parseInt(data.items[0].snippet.categoryId);});
-		console.log("fim", cat);
+		console.log("Request realizada! categoryId = ", cat);//Resultado Randômico(Undefined ou 27), com o código atual (URL FIXA) o esperado é 27
 	} catch (error) {
 		console.log(error);
 	}
-}
+}//agradecimento ao Fabrício Santos por ajudar a fazer esta request após 3 dias de frustração.
 category = fetchAPI(videoid)
-console.log("category =", category);
+//console.log("category =", category);
 
+/*Adicionar função para category ser igual a ALLOW (cat = 27 [EDUCATION] || cat = 35 [DOCUMENTARY]) ou DENY (Qualquer outro resultado)?
+*
+*/
 window.addEventListener('mouseup',fetchAPI());
 
 function isPaused() {
