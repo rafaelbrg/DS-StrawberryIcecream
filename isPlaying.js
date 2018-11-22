@@ -4,16 +4,27 @@ Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
 	}
 })
 
+var videourl;
+var videoid; // = videourl.substr(32);
+
+function receiver(message, sender, sendResponse){		
+		videourl = message.toString();
+		videoid = videourl.substr(32);
+		console.log("Done! "+ videoid);			
+	}	
+
+
+chrome.runtime.onMessage.addListener(receiver);
+
  var video_status;
  var category;
- var videourl = "https://www.youtube.com/watch?v=eaAAvCAeewQ";//Recebe URL do Site do YoutTube (URL FIXA PARA TESTE)
 console.log(videourl)
- var videoid = videourl.substr(32);//Remove apenas o Video ID da URL
  var cat;
 
  // Faz requisição para a API do YouTube e pega a categoria do vídeo.
 async function fetchAPI(videoid, data) {
 	try {
+	
 		console.log("Parte final da URL = ",videoid);
 		const apiUrl = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoid}&key=AIzaSyABwRlveLXMYpZQ2CsZbGEqzrCZ9jnCA4s&fields=items(id,snippet(categoryId))&part=snippet,statistics`)
 		apiUrl.json().then(data => {cat = parseInt(data.items[0].snippet.categoryId);});
@@ -21,17 +32,17 @@ async function fetchAPI(videoid, data) {
 	} catch (error) {
 		console.log(error);
 	}
-}//agradecimento ao Fabrício Santos por ajudar a fazer esta request após 3 dias de frustração.
-category = fetchAPI(videoid)
-//console.log("category =", category);
+}
+
 
 /*Adicionar função para category ser igual a ALLOW (cat = 27 [EDUCATION] || cat = 35 [DOCUMENTARY]) ou DENY (Qualquer outro resultado)?
 *
 */
-window.addEventListener('mouseup',fetchAPI());
+
+	
 
 function isPaused() {
-
+category = fetchAPI(videoid);
 	if (document.querySelector('video').playing) { // checa se o video tá rodando ou não
 		console.log("Playing");
 		video_status = 0;
