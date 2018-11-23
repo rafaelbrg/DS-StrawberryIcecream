@@ -5,23 +5,21 @@
     "description": "Contabiliza o tempo que você gasta no Youtube.",
 	  "permissions":["declarativeContent","storage","activeTab","tabs","webNavigation"],
 	  "manifest_version": 2,
-	  
+
 	"browser_action": {
 		"default_icon": "32.png",
-		"default_popup": "popup.html", 
+		"default_popup": "popup.html",
 		"default_title": "Clique aqui para ver os dados gerados!"
     },
-	  
+
 	"background":{
-		"scripts": ["background_script.js"]		
+		"scripts": ["background_script.js"]
 	},
-	  
+
 	"content_scripts":[{
-		"matches": ["https://www.youtube.com/watch?v=*"],		
-		"js": ["isPlaying.js","message_passing.js"]	
-	}]  
-	  
-  
+		"matches": ["https://www.youtube.com/watch?v=*"],
+		"js": ["isPlaying.js","reset_tempo.js","jquery-3.3.1.min.js"]
+	}]
+
+
   }
-  
-  
