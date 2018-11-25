@@ -6,6 +6,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 			<link type="text/css" rel="stylesheet"
 			href="stylesheet.css">		
+			<script language="JavaScript" src="reset_tempo.js"></script>
 		</head>
 	
 		<body>
@@ -16,7 +17,7 @@
 			<div id="info"> 
 				<h2 id="subtitulo">Hoje</h2>
 				<div id="grafico">	
-					<object data="graphicTest/empty-example/index.html" width="154" height="154" margin="0px"></object>	
+					<object data="graphicTest/empty-example/graf2.html" width="154" height="154" margin="0px"></object>	
 				</div>
 				
 				<div id="dados">
@@ -35,7 +36,7 @@
 			<div id="info"> 
 				<h2 id="subtitulo">Na Semana</h2>
 				<div id="grafico">	
-					<object data="graphicTest/empty-example/index.html" width="154" height="154" margin="0px"></object>	
+					<object data="graphicTest/empty-example/graf1.html" width="154" height="154" margin="0px"></object>	
 				</div>
 				
 				<div id="dados">
@@ -57,8 +58,11 @@
 			
 			<div id="extra">
 				<ul>
-					<li> <a href="http://endereco/dados">Outros Graficos</a> </li>
-					<li> <a href="http://endereco/config">Configurações</a> </li>
+					<button id="create_button" class="btn button_create_folder btn-sm">
+						<i class="glyphicon glyphicon-asterisk"></i>
+						Resetar Valores
+					</button>
+					<li> <a href="endereco/config">Configurações</a> </li>
 				</ul>
 			</div>
 			
