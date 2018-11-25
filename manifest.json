@@ -1,9 +1,9 @@
 
   {
-    "name": "Nome da Extensão",
-    "version": "1.0",
-    "description": "Descrição da Extensão",
-	  "permissions":["declarativeContent","storage","activeTab","webNavigation"],
+    "name": "Youtube Icecream Time",
+    "version": "0.9",
+    "description": "Contabiliza o tempo que você gasta no Youtube.",
+	  "permissions":["declarativeContent","storage","activeTab","tabs","webNavigation"],
 	  "manifest_version": 2,
 	  
 	"browser_action": {
@@ -12,10 +12,13 @@
 		"default_title": "Clique aqui para ver os dados gerados!"
     },
 	  
+	"background":{
+		"scripts": ["background_script.js"]		
+	},
+	  
 	"content_scripts":[{
-		"matches": ["<all_urls>"],
-		
-		"js": ["isPlaying.js"]	
+		"matches": ["https://www.youtube.com/watch?v=*"],		
+		"js": ["isPlaying.js","reset_tempo.js","jquery-3.3.1.min.js"]	
 	}]  
 	  
   
