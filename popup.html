@@ -23,13 +23,13 @@
                 </div>
 
                 <div id="dados">
-                    <h1 id="dado">
+                    <h1 id="dado1">
                         Tempo gasto em vídeos produtivos: 00:00hrs
                     </h1>
-                    <h2 id="dado">
+                    <h2 id="dado2">
                         Tempo gasto em vídeos improdutivos: 00:00hrs
                     </h2>
-                    <h3 id="dado">
+                    <h3 id="dado3">
                         Tempo total gasto no youtube: 00:00hrs
                     </h3>
                 </div>
@@ -42,13 +42,13 @@
                 </div>
 
                 <div id="dados">
-                    <h1 id="dado">
+                    <h1 id="dado4">
                         Tempo gasto em vídeos produtivos: 00:00hrs
                     </h1>
-                    <h2 id="dado">
+                    <h2 id="dado5">
                         Tempo gasto em vídeos improdutivos: 00:00hrs
                     </h2>
-                    <h3 id="dado">
+                    <h3 id="dado6">
                         Tempo total gasto no youtube: 00:00hrs
                     </h3>
                 </div>
@@ -72,6 +72,83 @@
                 <p id="strawberry">STRAWBERRY ICECREAM</p>
             </div>
 
+			
+			<script type="text/javascript">
+				function muda_dados_diarios() {
+					var dut_value; 
+					var dtt_value;
+						var hr_util;
+						var min_util;
+						var hr_inutil;
+						var min_inutil;
+						var hr_total;
+						var min_total;
+					var percent;	
+					//ler os dados salvos do sistema
+						chrome.storage.local.get(["dtt"], function (result) { //Primeiro tem que ler o dado que já está salvo
+							//console.log('DTT Armazenado: ' + parseInt(result.dtt));
+							dtt_value = parseInt(result.dtt);
+						});
+						chrome.storage.local.get(["dut"], function(result) { //Primeiro tem que ler o dado que já está salvo
+							//console.log('DUT Armazenado: ' + parseInt(result.dut));
+							dut_value = parseInt(result.dut);		
+						});	
+					//transformar em variaveis pertinentes
+						hr_total = dtt_value / 60;
+						min_total = dtt_value % 60;
+						hr_inutil = dut_value / 60;
+						min_inutil = dut_value %60;
+						hr_util = (dtt_value - dut_value) / 60;
+						min_util = (dtt_value - dut_value) % 60;
+						percent = (dtt_value - dut_value) / dtt_value;
+					//alterar no front
+				document.getElementById('dado1').innerHTML = "Tempo gasto em vídeos produtivos: "+hr_util+":"+min_util;
+				document.getElementById('dado2').innerHTML = "Tempo gasto em vídeos improdutivos: "+hr_inutil+":"+min_inutil;
+				document.getElementById('dado3').innerHTML = "Tempo total gasto no youtube: "+hr_total+":"+min_total;
+				document.getElementById('info_final').innerHTML = "Hoje vc usou "+percent+" do youtube para vídeos não-banais.";
+				}
+				function muda_dados_semanais() {
+					var wut_value; 
+					var wtt_value;
+						var hr_util;
+						var min_util;
+						var hr_inutil;
+						var min_inutil;
+						var hr_total;
+						var min_total;
+					//ler os dados salvos do sistema
+						chrome.storage.local.get(["wtt"], function (result) { //Primeiro tem que ler o dado que já está salvo
+							//console.log('DTT Armazenado: ' + parseInt(result.dtt));
+							wtt_value = parseInt(result.wtt);
+						});
+						chrome.storage.local.get(["wut"], function(result) { //Primeiro tem que ler o dado que já está salvo
+							//console.log('DUT Armazenado: ' + parseInt(result.dut));
+							wut_value = parseInt(result.wut);		
+						});	
+					//transformar em variaveis pertinentes
+						hr_total = wtt_value / 60;
+						min_total = wtt_value % 60;
+						hr_inutil = wut_value / 60;
+						min_inutil = wut_value %60;
+						hr_util = (wtt_value - wut_value) / 60;
+						min_util = (wtt_value - wut_value) % 60;
+					//alterar no front
+				document.getElementById('dado4').innerHTML = "Tempo gasto em vídeos produtivos: "+hr_util+":"+min_util;
+				document.getElementById('dado5').innerHTML = "Tempo gasto em vídeos improdutivos: "+hr_inutil+":"+min_inutil;
+				document.getElementById('dado6').innerHTML = "Tempo total gasto no youtube: "+hr_total+":"+min_total;
+				}
+				//chamar as funçôes, 1 exec. a cada 10 segundos é suficiente
+				setInterval(muda_dados_diarios, 10000);
+				setInterval(muda_dados_semanais, 10000);
+			</script>
         </body>
 
     </html>
+
+	
+	
+	
+	
+	
+	
+	
