@@ -13,11 +13,11 @@
     },
 
 	"background":{
-		"scripts": ["background_script.js"]
+		"scripts": ["background_script.js", "change_html.js"]
 	},
 
 	"content_scripts":[{
-		"matches": ["https://www.youtube.com/watch?v=*"],
+		"matches": ["<all_urls>"],
 		"js": ["isPlaying.js","reset_tempo.js","jquery-3.3.1.min.js"]
 	}]
 
