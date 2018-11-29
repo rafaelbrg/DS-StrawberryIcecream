@@ -63,14 +63,31 @@ function verify_date(){ //verificar a data em razão de resetar os dados diariam
 }
 
 window.addEventListener("mouseup",verify_date);
-
+var zero = 0;
 function reset(){
-		chrome.storage.local.clear(function() {
+		//zerar valores wtt wut dtt dut
+	chrome.storage.local.set({ wtt: zero }, function () {
+		chrome.storage.local.set({ wtt: zero }, function () {
+		});
+	});
+	chrome.storage.local.set({ wut: zero }, function () {
+		chrome.storage.local.set({ wut: zero }, function () {
+		});
+	});
+	chrome.storage.local.set({ dtt: zero }, function () {
+		chrome.storage.local.set({ dtt: zero }, function () {
+		});
+	});
+	chrome.storage.local.set({ dut: zero }, function () {
+		chrome.storage.local.set({ dut: zero }, function () {
+		});
+	});
+		/*chrome.storage.local.clear(function() {
 			console.log("Clear");
 			var error = chrome.runtime.lastError;
 			if (error) {
 			console.error(error);
-		}});
+		}});*/
 }
 
 window.addEventListener('load', function load(event){
